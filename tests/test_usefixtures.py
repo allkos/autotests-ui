@@ -1,3 +1,6 @@
+import pytest
+
+
 # Фикстура для очистки данных из базы данных
 @pytest.fixture
 def clear_books_database():
