@@ -21,5 +21,7 @@ class CreateCourseToolbarViewComponent(BaseComponent):
     def click_create_course_button(self):
         self.create_course_button.click()
 
+    def check_disabled_create_course_button(self):
+        expect(self.create_course_button).to_be_disabled()
 
 

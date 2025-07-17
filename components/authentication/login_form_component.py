@@ -1,8 +1,6 @@
 from playwright.sync_api import Page, expect
 
 from components.base_component import BaseComponent
-from components.navigation.navbar_component import NavbarComponent
-from playwright_registration import email_input, password_input
 
 
 class LoginFormComponent(BaseComponent):
