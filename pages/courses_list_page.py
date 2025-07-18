@@ -32,7 +32,8 @@ class CoursesListPage(BasePage):
     def check_visible_empty_view(self):
         self.empty_view.check_visible(
             title='There is no results',
-            description='Results from the load test pipeline will be displayed here'
+            description='Results from the load test pipeline will be displayed here',
+            identifier= 'courses-list',
         )
 
      # Методы были удалены, т.к. в автотестах будут использоваться методы компонента
