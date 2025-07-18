@@ -13,24 +13,18 @@ class SidebarListItemComponent(BaseComponent):
         super().__init__(page)
 
 
-        self.icon = Icon(
-            page, '{identifier}-drawer-list-item-icon', 'Sidebar item icon'
-        )
-        self.title = Text(
-            page, '{identifier}-drawer-list-item-title-text', 'Sidebar item title'
-        )
-        self.button = Button(
-            page, '{identifier}-drawer-list-item-button', 'Sidebar item button'
-        )
+        self.icon = Icon(page, f'{identifier}-drawer-list-item-icon', 'Icon')
+        self.title = Text(page, f'{identifier}-drawer-list-item-title-text', 'Title')
+        self.button = Button(page, f'{identifier}-drawer-list-item-button', 'Button')
 
-    def check_visible(self, title: str, index: str):
-        self.icon.check_visible(identifier=index)
+    def check_visible(self, title: str):
+        self.icon.check_visible()
 
-        self.title.check_visible(identifier=index)
-        self.title.check_have_text(title,identifier=index)
+        self.title.check_visible()
+        self.title.check_have_text(title)
 
-        self.button.check_visible(identifier=index)
+        self.button.check_visible()
 
-    def navigate(self, expected_url: Pattern[str], index: str):
-        self.button.click(identifier=index)
+    def navigate(self, expected_url: Pattern[str]):
+        self.button.click()
         self.check_current_url(expected_url)

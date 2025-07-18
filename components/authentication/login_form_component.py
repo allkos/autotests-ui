@@ -24,4 +24,4 @@ class LoginFormComponent(BaseComponent):
         self.email_input.check_have_value(email)
 
         self.password_input.check_visible()
-        expect(self.password_input).check_have_value(password)
+        self.password_input.check_have_value(password)
