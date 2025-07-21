@@ -28,6 +28,7 @@ class CoursesListPage(BasePage):
 
         # Пустой блок при отсутствии курсов
         self.empty_view = EmptyViewComponent(page,'courses-list')
+        self.course_view_menu_component = CourseViewMenuComponent(page)
 
 
     def check_visible_empty_view(self):

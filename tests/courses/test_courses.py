@@ -1,3 +1,4 @@
+import re
 import pytest
 
 from pages.courses.courses_list_page import CoursesListPage
@@ -40,4 +41,44 @@ class TestCourses:
         courses_list_page.toolbar_view.check_visible()
         courses_list_page.course_view.check_visible(
             index=0, title="Playwright", max_score="100", min_score="10", estimated_time="2 weeks"
+        )
+
+    def test_edit_course(
+            self,
+            courses_list_page: CoursesListPage,
+            create_course_page: CreateCoursePage,
+    ):
+        create_course_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create")
+        create_course_page.create_course_toolbar_view.check_visible()
+        create_course_page.image_upload_widget.check_visible(is_image_uploaded=False)
+        create_course_page.create_course_form.check_visible(
+            title="", estimated_time="", description="", max_score="0", min_score="0"
+        )
+        create_course_page.image_upload_widget.upload_preview_image('./testdata/files/image.png')
+        create_course_page.image_upload_widget.check_visible(is_image_uploaded=True)
+        create_course_page.create_course_form.fill(
+            title="Test_test",
+            estimated_time="2 weeks",
+            description="Test_test",
+            max_score="10",
+            min_score="1"
+        )
+        create_course_page.create_course_toolbar_view.click_create_course_button()
+        courses_list_page.check_current_url(re.compile(".*/#/courses"))
+        courses_list_page.toolbar_view.check_visible()
+        courses_list_page.course_view.check_visible(
+            index=0, title="Test_test", max_score="10", min_score="1", estimated_time="2 weeks")
+        courses_list_page.course_view_menu_component.click_edit(0)
+        create_course_page.create_course_form.fill(
+            title="Playwright",
+            estimated_time="4 weeks",
+            description="Playwright",
+            max_score="100",
+            min_score="10"
+        )
+        create_course_page.create_course_toolbar_view.click_create_course_button()
+
+        courses_list_page.toolbar_view.check_visible()
+        courses_list_page.course_view.check_visible(
+            index=0, title="Playwright", max_score="100", min_score="10", estimated_time="4 weeks"
         )
