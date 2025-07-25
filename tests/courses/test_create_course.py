@@ -6,6 +6,8 @@ from pages.courses.create_course_page import CreateCoursePage
 from tools.allure.epics import AllureEpic
 from tools.allure.features import AllureFeature
 from tools.allure.stories import AllureStory
+from tools.routes import AppRoute
+from config import settings
 
 
 @pytest.mark.courses
@@ -14,7 +16,7 @@ from tools.allure.stories import AllureStory
 @allure.suite(AllureFeature.COURSES)
 @allure.sub_suite(AllureStory.COURSES)
 def test_create_course(courses_list_page: CoursesListPage, create_course_page: CreateCoursePage):
-    create_course_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create")
+    create_course_page.visit(AppRoute.CREATE_COURSE)
 
     create_course_page.create_course_toolbar_view.check_visible()
     create_course_page.image_upload_widget.check_visible(is_image_uploaded=False)
@@ -25,7 +27,7 @@ def test_create_course(courses_list_page: CoursesListPage, create_course_page: C
     create_course_page.create_course_exercises_toolbar_view.check_visible()
     create_course_page.check_visible_exercises_empty_view()
 
-    create_course_page.image_upload_widget.upload_preview_image(file="./testdata/files/image.png")
+    create_course_page.image_upload_widget.upload_preview_image(file=settings.test_data.image_png_file)
     create_course_page.image_upload_widget.check_visible(is_image_uploaded=True)
     create_course_page.create_course_form.fill(
         title="Playwright",
