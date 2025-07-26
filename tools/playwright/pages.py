@@ -2,6 +2,8 @@ import allure
 from playwright.sync_api import Playwright, Page
 
 from config import settings, Browser
+from tools.playwright.mocks import mock_static_resources  # Импортируем функцию mock_static_resources
+
 
 
 def initialize_playwright_page(
@@ -20,7 +22,7 @@ def initialize_playwright_page(
     )
     context.tracing.start(screenshots=True, snapshots=True, sources=True)
     page = context.new_page()
-
+    mock_static_resources(page)  # Отключаем загрузку статических ресурсов
     yield page
 
     # Используем settings.tracing_dir
