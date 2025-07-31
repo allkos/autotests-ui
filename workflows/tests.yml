@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest  # Указываем, что тесты будут запускаться на последней версии Ubuntu
 
     steps:
-      # 1. Шаг, который будет клонировать ваш репозиторий на машину GitHub Actions
       - name: Check out repository
         uses: actions/checkout@v4  # Используем GitHub Action для клонирования репозитория
 
