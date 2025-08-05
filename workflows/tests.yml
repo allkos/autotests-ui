@@ -1,12 +1,14 @@
+# Имя вашего workflow, которое будет отображаться в интерфейсе GitHub Actions
 name: UI tests
 
+# Указываем, когда будет запускаться данный workflow
 on:
   push:
     branches:
-      - main
+      - main  # Запускать workflow, когда будет сделан коммит в ветку main
   pull_request:
     branches:
-      - main
+      - main  # Запускать workflow, когда будет сделан pull request в ветку main
 
 # Определяем все шаги, которые должны быть выполнены в рамках работы с тестами
 jobs:
@@ -14,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest  # Указываем, что тесты будут запускаться на последней версии Ubuntu
 
     steps:
+      # 1. Шаг, который будет клонировать ваш репозиторий на машину GitHub Actions
       - name: Check out repository
         uses: actions/checkout@v4  # Используем GitHub Action для клонирования репозитория
 
@@ -21,7 +24,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4  # Используем GitHub Action для установки Python
         with:
-          python-version: '3.11'  # Устанавливаем версию Python 3.11
+          python-version: '3.11'  # Устанавливаем версию Python 3.11 (можно заменить на другую версию)
 
       # 3. Шаг для установки всех зависимостей проекта
       - name: Install dependencies
@@ -58,5 +61,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4  # Используем GitHub Action для публикации отчёта на GitHub Pages
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}  # Токен для аутентификации на GitHub
-          publish_branch: gh-pages
-          publish_dir: allure-history
+          publish_branch: gh-pages  # Указываем, что отчёт будет опубликован в ветке gh-pages
+          publish_dir: allure-history  # Указываем папку, которая будет опубликована на GitHub Pages
