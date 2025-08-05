@@ -3,10 +3,10 @@ name: UI tests
 on:
   push:
     branches:
-      - main  # Запускать workflow, когда будет сделан коммит в ветку main
+      - main
   pull_request:
     branches:
-      - main  # Запускать workflow, когда будет сделан pull request в ветку main
+      - main
 
 # Определяем все шаги, которые должны быть выполнены в рамках работы с тестами
 jobs:
