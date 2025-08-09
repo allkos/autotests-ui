@@ -14,3 +14,11 @@ allure-report
 *.json
 videos
 tracingscr
+
+# coverage
+coverage.html
+coverage-results
+coverage-report.json
+coverage-history.json
+
+.DS_Store
